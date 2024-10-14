@@ -1,4 +1,6 @@
 #include <iostream>
+#include <sstream>
+
 #include <cmath>
 #include "agent.hpp"
 
@@ -67,10 +69,17 @@ double CAgent::getRange() const
     return m_detect_range;
 }
 
+std::string CAgent::to_string() const
+{
+    std::stringstream os;
+    const Pos pos = getPosition();
+    os << "Agent ID:" << getAgentID() << '(' << (long) pos.x << ", " << (long) pos.y << ")";
+    os << " [S: " << getSpeed() << ", H: " << getHeading() << ", R: " << getRange()<< "]";
+    return os.str();
+}
+
 std::ostream& operator<<( std::ostream& os, const CAgent& ag)
 {
-        const Pos pos = ag.getPosition();
-        os << "Agent ID:" << ag.getAgentID() << '(' << (long) pos.x << ", " << (long) pos.y << ")";
-        os << " [S: " << ag.getSpeed() << ", H: " << ag.getHeading() << ", R: " << ag.getRange()<< "]";
-        return os;
-    }
+    os << ag.to_string();
+    return os;
+}

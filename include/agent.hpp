@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 #include "definition.hpp"
 
 class CAgent
@@ -22,6 +23,7 @@ public:
     virtual double getHeading() const;
     virtual double getRange() const;
 
+    virtual std::string to_string() const;
 private:
     unsigned long m_agent_id;
     Pos    m_position;  
